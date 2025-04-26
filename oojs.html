@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOJS menü</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .shape {
+            position: absolute;
+            cursor: move;
+        }
+        
+        #shapeContainer {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            border: 1px solid #ccc;
+            margin: 20px 0;
+        }
+        
+        .controls {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Web-programozás 1 Előadás Házi feladat</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Főoldal</a></li>
+            <li><a href="table.html">Táblázat menü</a></li>
+            <li><a href="html5.html">HTML5 menü</a></li>
+            <li><a href="chart.html">ChartJS menü</a></li>
+            <li><a href="ajax.html">AJAX menü</a></li>
+            <li><a href="oojs.html" class="active">OOJS menü</a></li>
+            <li><a href="react.html">React</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <aside>
+            <h3>OOJS menü</h3>
+            <p>Ez az oldal Objektumorientált JavaScript példákat mutat be.</p>
+        </aside>
+        
+        <div class="content">
+            <h2>Objektumorientált JavaScript</h2>
+            
+            <div class="controls">
+                <button id="createCircle">Kör létrehozása</button>
+                <button id="createRectangle">Téglalap létrehozása</button>
+                <button id="createTriangle">Háromszög létrehozása</button>
+                <button id="clearShapes">Összes törlése</button>
+            </div>
+            
+            <div id="shapeContainer"></div>
+            
+            <div id="shapeInfo"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Készítette: Kánnai Balázs F7R3PU</p>
+    </footer>
+    
+    <script src="oojs.js"></script>
+</body>
+</html>

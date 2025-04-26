@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX menü</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Web-programozás 1 Előadás Házi feladat</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Főoldal</a></li>
+            <li><a href="table.html">Táblázat menü</a></li>
+            <li><a href="html5.html">HTML5 menü</a></li>
+            <li><a href="chart.html">ChartJS menü</a></li>
+            <li><a href="ajax.html" class="active">AJAX menü</a></li>
+            <li><a href="oojs.html">OOJS menü</a></li>
+            <li><a href="react.html">React</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <aside>
+            <h3>AJAX menü</h3>
+            <p>Ez az oldal AJAX kéréseket mutat be egy külső API-val.</p>
+        </aside>
+        
+        <div class="content">
+            <h2>API kezelése AJAX-al</h2>
+            
+            <div class="api-section">
+                <h3>Read művelet</h3>
+                <button id="readData">Adatok lekérése</button>
+                <div id="readOutput"></div>
+                <div id="statsOutput"></div>
+            </div>
+            
+            <div class="api-section">
+                <h3>Create művelet</h3>
+                <form id="createForm">
+                    <div>
+                        <label for="createName">Név:</label>
+                        <input type="text" id="createName" required maxlength="30">
+                    </div>
+                    <div>
+                        <label for="createHeight">Magasság:</label>
+                        <input type="text" id="createHeight" required maxlength="30">
+                    </div>
+                    <div>
+                        <label for="createWeight">Súly:</label>
+                        <input type="text" id="createWeight" required maxlength="30">
+                    </div>
+                    <button type="submit">Adat létrehozása</button>
+                </form>
+                <div id="createOutput"></div>
+            </div>
+            
+            <div class="api-section">
+                <h3>Update művelet</h3>
+                <div>
+                    <label for="updateId">ID:</label>
+                    <input type="text" id="updateId">
+                    <button id="getDataForId">Adatok lekérése ID alapján</button>
+                </div>
+                <form id="updateForm">
+                    <div>
+                        <label for="updateName">Név:</label>
+                        <input type="text" id="updateName" required maxlength="30">
+                    </div>
+                    <div>
+                        <label for="updateHeight">Magasság:</label>
+                        <input type="text" id="updateHeight" required maxlength="30">
+                    </div>
+                    <div>
+                        <label for="updateWeight">Súly:</label>
+                        <input type="text" id="updateWeight" required maxlength="30">
+                    </div>
+                    <button type="submit">Adat frissítése</button>
+                </form>
+                <div id="updateOutput"></div>
+            </div>
+            
+            <div class="api-section">
+                <h3>Delete művelet</h3>
+                <form id="deleteForm">
+                    <div>
+                        <label for="deleteId">ID:</label>
+                        <input type="text" id="deleteId" required>
+                    </div>
+                    <button type="submit">Adat törlése</button>
+                </form>
+                <div id="deleteOutput"></div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Készítette: Kánnai Balázs F7R3PU</p>
+    </footer>
+    
+    <script src="ajax.js"></script>
+</body>
+</html>
