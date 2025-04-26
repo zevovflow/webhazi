@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Táblázat menü</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Web-programozás 1 Előadás Házi feladat</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Főoldal</a></li>
+            <li><a href="table.html" class="active">Táblázat menü</a></li>
+            <li><a href="html5.html">HTML5 menü</a></li>
+            <li><a href="chart.html">ChartJS menü</a></li>
+            <li><a href="ajax.html">AJAX menü</a></li>
+            <li><a href="oojs.html">OOJS menü</a></li>
+            <li><a href="react.html">React</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <aside>
+            <h3>Táblázat menü</h3>
+            <p>Ez az oldal egy CRUD funkcionalitással ellátott táblázatot tartalmaz.</p>
+        </aside>
+        
+        <div class="content">
+            <h2>Táblázat kezelése</h2>
+            
+            <div class="table-controls">
+                <button id="addRowBtn">Új sor hozzáadása</button>
+                <input type="text" id="searchInput" placeholder="Keresés...">
+                <select id="searchColumn">
+                    <option value="all">Minden oszlop</option>
+                    <option value="0">Név</option>
+                    <option value="1">Kor</option>
+                    <option value="2">Város</option>
+                    <option value="3">Foglalkozás</option>
+                </select>
+            </div>
+            
+            <div id="editForm" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h3>Szerkesztés</h3>
+                    <form id="rowForm">
+                        <input type="hidden" id="editId">
+                        <div>
+                            <label for="name">Név:</label>
+                            <input type="text" id="name" required minlength="2" maxlength="50">
+                        </div>
+                        <div>
+                            <label for="age">Kor:</label>
+                            <input type="number" id="age" required min="1" max="120">
+                        </div>
+                        <div>
+                            <label for="city">Város:</label>
+                            <input type="text" id="city" required minlength="2" maxlength="50">
+                        </div>
+                        <div>
+                            <label for="job">Foglalkozás:</label>
+                            <input type="text" id="job" required minlength="2" maxlength="50">
+                        </div>
+                        <button type="submit">Mentés</button>
+                    </form>
+                </div>
+            </div>
+            
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th data-column="0">Név <span class="sort-icon">↓</span></th>
+                        <th data-column="1">Kor <span class="sort-icon"></span></th>
+                        <th data-column="2">Város <span class="sort-icon"></span></th>
+                        <th data-column="3">Foglalkozás <span class="sort-icon"></span></th>
+                        <th>Műveletek</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- A táblázat sorai JavaScripttel lesznek feltöltve -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Készítette: Kánnai Balázs F7R3PU</p>
+    </footer>
+    
+    <script src="table.js"></script>
+</body>
+</html>

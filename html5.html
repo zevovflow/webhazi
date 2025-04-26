@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 menü</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .example-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        canvas {
+            border: 1px solid #000;
+            margin: 10px 0;
+        }
+        
+        #dropArea {
+            width: 200px;
+            height: 100px;
+            border: 2px dashed #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        #dropArea.highlight {
+            border-color: #007bff;
+            background-color: #f0f8ff;
+        }
+        
+        svg {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Web-programozás 1 Előadás Házi feladat</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Főoldal</a></li>
+            <li><a href="table.html">Táblázat menü</a></li>
+            <li><a href="html5.html" class="active">HTML5 menü</a></li>
+            <li><a href="chart.html">ChartJS menü</a></li>
+            <li><a href="ajax.html">AJAX menü</a></li>
+            <li><a href="oojs.html">OOJS menü</a></li>
+            <li><a href="react.html">React</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <aside>
+            <h3>HTML5 menü</h3>
+            <p>Ez az oldal HTML5 technológiák bemutatását tartalmazza.</p>
+        </aside>
+        
+        <div class="content">
+            <h2>HTML5 technológiák</h2>
+            
+            <div class="example-container">
+                <h3>Web Storage</h3>
+                <p>Az alábbi példa a localStorage használatát mutatja be:</p>
+                <input type="text" id="storageInput" placeholder="Írj ide valamit...">
+                <button id="saveBtn">Mentés</button>
+                <button id="loadBtn">Betöltés</button>
+                <button id="clearBtn">Törlés</button>
+                <p id="storageOutput"></p>
+            </div>
+            
+            <div class="example-container">
+                <h3>Web Workers - Prímszám Generáló</h3>
+                <div class="worker-controls">
+                    <button id="startWorker">Prímszámoló indítása</button>
+                    <button id="stopWorker" disabled>Megállítás</button>
+                    <button id="resetWorker">Reset</button>
+                </div>
+                <div class="worker-settings">
+                    <label for="primeLimit">Prímszám db: </label>
+                    <input type="number" id="primeLimit" value="100" min="10" max="10000">
+                </div>
+                <div id="workerOutput">
+                    <p>Állapot: Készen áll</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="primeProgress"></div>
+                    </div>
+                    <ul id="primeList"></ul>
+                </div>
+            </div>
+            
+            <div class="example-container">
+                <h3>Server-Sent Events</h3>
+                <p>SSE szimuláció (nincs valódi szerver oldal):</p>
+                <button id="startSSE">Start Events</button>
+                <button id="stopSSE">Stop Events</button>
+                <p id="sseOutput"></p>
+            </div>
+            
+            <div class="example-container">
+                <h3>Geolocation API</h3>
+                <p>Próbálja ki a geolokációt:</p>
+                <button id="getLocation">Lokáció lekérése</button>
+                <p id="geoOutput"></p>
+            </div>
+            
+            <div class="example-container">
+                <h3>Drag and drop API</h3>
+                <p>Húzza át a képet a dobozba:</p>
+                <img id="dragImage" src="https://via.placeholder.com/100" draggable="true" alt="Drag me">
+                <div id="dropArea">Húzd ide a képet</div>
+            </div>
+            
+            <div class="example-container">
+                <h3>Canvas</h3>
+                <p>Egyszerű rajzolás a canvas-on:</p>
+                <canvas id="myCanvas" width="300" height="200"></canvas>
+                <button id="clearCanvas">Törlés</button>
+            </div>
+            
+            <div class="example-container">
+                <h3>SVG</h3>
+                <p>Egyszerű SVG példa:</p>
+                <div id="svgContainer" style="width: 200px; height: 200px;"></div>
+                <button id="changeSvgColor">Szín változtatása</button>
+                <button id="animateSvg">Animáció indítása</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Készítette: Kánnai Balázs F7R3PU</p>
+    </footer>
+    
+    <script src="html5.js"></script>
+</body>
+</html>
