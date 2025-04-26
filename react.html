@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React alkalmazás</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .react-app {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            margin: 5px 0;
+            background: #f4f4f4;
+        }
+        
+        .todo-item.completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+        
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .quiz-question {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quiz-option {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f4f4f4;
+            cursor: pointer;
+        }
+        
+        .quiz-option:hover {
+            background: #ddd;
+        }
+        
+        .quiz-option.correct {
+            background: #a5d6a7;
+        }
+        
+        .quiz-option.incorrect {
+            background: #ef9a9a;
+        }
+        
+        .quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e3f2fd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Web-programozás 1 Előadás Házi feladat</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Főoldal</a></li>
+            <li><a href="table.html">Táblázat menü</a></li>
+            <li><a href="html5.html">HTML5 menü</a></li>
+            <li><a href="chart.html">ChartJS menü</a></li>
+            <li><a href="ajax.html">AJAX menü</a></li>
+            <li><a href="oojs.html">OOJS menü</a></li>
+            <li><a href="react.html" class="active">React</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <aside>
+            <h3>React alkalmazás</h3>
+            <p>Ez az oldal két React alkalmazást tartalmaz.</p>
+        </aside>
+        
+        <div class="content">
+            <h2>React példák</h2>
+            
+            <div id="todoApp" class="react-app"></div>
+            <div id="quizApp" class="react-app"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Készítette: Kánnai Balázs F7R3PU</p>
+    </footer>
+    
+    <!-- Todo App -->
+    <script type="text/babel">
+        const TodoApp = () => {
+            const [todos, setTodos] = React.useState([]);
+            const [inputValue, setInputValue] = React.useState('');
+            
+            const addTodo = () => {
+                if (inputValue.trim()) {
+                    setTodos([...todos, {
+                        id: Date.now(),
+                        text: inputValue,
+                        completed: false
+                    }]);
+                    setInputValue('');
+                }
+            };
+            
+            const toggleTodo = (id) => {
+                setTodos(todos.map(todo => 
+                    todo.id === id ? {...todo, completed: !todo.completed} : todo
+                ));
+            };
+            
+            const deleteTodo = (id) => {
+                setTodos(todos.filter(todo => todo.id !== id));
+            };
+            
+            return (
+                <div>
+                    <h3>Todo Alkalmazás</h3>
+                    <div>
+                        <input 
+                            type="text" 
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            placeholder="Új todo..."
+                        />
+                        <button onClick={addTodo}>Hozzáad</button>
+                    </div>
+                    <div>
+                        {todos.length === 0 ? (
+                            <p>Nincsenek teendők</p>
+                        ) : (
+                            <ul>
+                                {todos.map(todo => (
+                                    <li 
+                                        key={todo.id} 
+                                        className={`todo-item ${todo.completed ? 'completed' : ''}`}
+                                    >
+                                        <span onClick={() => toggleTodo(todo.id)}>
+                                            {todo.text}
+                                        </span>
+                                        <button onClick={() => deleteTodo(todo.id)}>Törlés</button>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+        
+        ReactDOM.render(<TodoApp />, document.getElementById('todoApp'));
+    </script>
+    
+    <!-- Quiz App -->
+    <script type="text/babel">
+        const QuizApp = () => {
+            const questions = [
+                {
+                    question: "Mi a JavaScript főbb jellemzője?",
+                    options: [
+                        "Kliens oldali szkriptnyelv",
+                        "Szerver oldali programozási nyelv",
+                        "Adatbázis kezelő nyelv",
+                        "Markup nyelv"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Melyik nem JavaScript keretrendszer?",
+                    options: [
+                        "React",
+                        "Angular",
+                        "Vue",
+                        "Django"
+                    ],
+                    correctAnswer: 3
+                },
+                {
+                    question: "Mire szolgál a useState React hook?",
+                    options: [
+                        "Komponens állapotának kezelésére",
+                        "Életciklus metódusok kezelésére",
+                        "Stílusok kezelésére",
+                        "Események kezelésére"
+                    ],
+                    correctAnswer: 0
+                }
+            ];
+            
+            const [currentQuestion, setCurrentQuestion] = React.useState(0);
+            const [selectedOption, setSelectedOption] = React.useState(null);
+            const [score, setScore] = React.useState(0);
+            const [quizCompleted, setQuizCompleted] = React.useState(false);
+            const [showResult, setShowResult] = React.useState(false);
+            
+            const handleOptionSelect = (index) => {
+                setSelectedOption(index);
+            };
+            
+            const checkAnswer = () => {
+                if (selectedOption === questions[currentQuestion].correctAnswer) {
+                    setScore(score + 1);
+                }
+                
+                setShowResult(true);
+            };
+            
+            const nextQuestion = () => {
+                if (currentQuestion < questions.length - 1) {
+                    setCurrentQuestion(currentQuestion + 1);
+                    setSelectedOption(null);
+                    setShowResult(false);
+                } else {
+                    setQuizCompleted(true);
+                }
+            };
+            
+            const restartQuiz = () => {
+                setCurrentQuestion(0);
+                setSelectedOption(null);
+                setScore(0);
+                setQuizCompleted(false);
+                setShowResult(false);
+            };
+            
+            return (
+                <div className="quiz-container">
+                    <h3>Kérdőív Alkalmazás</h3>
+                    
+                    {!quizCompleted ? (
+                        <div>
+                            <div className="quiz-question">
+                                {questions[currentQuestion].question}
+                            </div>
+                            <ul className="quiz-options">
+                                {questions[currentQuestion].options.map((option, index) => (
+                                    <li 
+                                        key={index}
+                                        className={`quiz-option ${
+                                            showResult 
+                                                ? index === questions[currentQuestion].correctAnswer 
+                                                    ? 'correct' 
+                                                    : selectedOption === index 
+                                                        ? 'incorrect' 
+                                                        : ''
+                                                : selectedOption === index 
+                                                    ? 'selected' 
+                                                    : ''
+                                        }`}
+                                        onClick={() => !showResult && handleOptionSelect(index)}
+                                    >
+                                        {option}
+                                    </li>
+                                ))}
+                            </ul>
+                            
+                            {!showResult ? (
+                                <button 
+                                    onClick={checkAnswer}
+                                    disabled={selectedOption === null}
+                                >
+                                    Ellenőrzés
+                                </button>
+                            ) : (
+                                <button onClick={nextQuestion}>
+                                    Következő kérdés
+                                </button>
+                            )}
+                        </div>
+                    ) : (
+                        <div className="quiz-result">
+                            <h4>Kérdőív eredménye</h4>
+                            <p>Összesen {questions.length} kérdésből {score} helyes válaszod volt!</p>
+                            <p>Százalékos eredmény: {Math.round((score / questions.length) * 100)}%</p>
+                            <button onClick={restartQuiz}>Újrakezdés</button>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+        
+        ReactDOM.render(<QuizApp />, document.getElementById('quizApp'));
+    </script>
+</body>
+</html>
